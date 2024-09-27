@@ -1,4 +1,4 @@
-# Scrapy settings for deka project
+# Scrapy settings for scraping_scrapy project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -7,14 +7,14 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = "deka"
+BOT_NAME = "scraping_scrapy"
 
-SPIDER_MODULES = ["deka.spiders"]
-NEWSPIDER_MODULE = "deka.spiders"
+SPIDER_MODULES = ["scraping_scrapy.spiders"]
+NEWSPIDER_MODULE = "scraping_scrapy.spiders"
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = "deka (+http://www.yourdomain.com)"
+#USER_AGENT = "scraping_scrapy (+http://www.yourdomain.com)"
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
@@ -45,13 +45,13 @@ ROBOTSTXT_OBEY = True
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    "deka.middlewares.DekaSpiderMiddleware": 543,
+#    "scraping_scrapy.middlewares.ScrapingScrapySpiderMiddleware": 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    "deka.middlewares.DekaDownloaderMiddleware": 543,
+#    "scraping_scrapy.middlewares.ScrapingScrapyDownloaderMiddleware": 543,
 #}
 
 # Enable or disable extensions
@@ -63,7 +63,7 @@ ROBOTSTXT_OBEY = True
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 #ITEM_PIPELINES = {
-#    "deka.pipelines.DekaPipeline": 300,
+#    "scraping_scrapy.pipelines.ScrapingScrapyPipeline": 300,
 #}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
