@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
 import requests
+import json
 
 
 url = 'https://www.blackrock.com/de/privatanleger/markte/weekly-market-update?switchLocale=y&siteEntryPassthrough=true'
@@ -9,36 +10,27 @@ soup = BeautifulSoup(page.text, "html.parser")
 
 div = soup.find_all("div", class_ =  "para-content col-xl-7 col-lg-9 col-12 ishares-remove-bootstrap-offset")
 
+headline = div[0].find('h3').text.strip()
+content = div[0].find_all('p')
 
-text = div[0].find_all('p')
-strong = div[0].find_all('strong')
-
-# for hit in div[0].find_all('strong'):
-#     hit = hit.text.strip()
-#     print(hit)
+article = []
 
 
-# for hit in div[0].find_all('strong'):
-#     hit = hit.text.strip()
-#     print(hit)
+for line in content:
+    hit = line.text.strip()
+    article.append(str(hit))
 
-arcticle = []
-for hit in div[0].find_all('p'):
-    # hit = hit.text.strip()
-    # print(hit)
-    arcticle.append(hit)
-
-article_stripped = []
-for line in arcticle:
-    print(line)
-    if line.find('<strong>') == -1:
-        print('no hit')
-    else:
-        print('hit')
-        hit = line.text.strip()
-        article_stripped.append(hit)
-    print('=============================')
+article = article[0:18]
+article_string = "".join(article)
+article_string.replace("',", "")
 
 
+obj = {
+    'headline' : headline,
+    'article' : article_string
+}
 
-print(article_stripped)
+json_obj = json.dumps(obj, ensure_ascii=False)
+
+with open ('test.json', 'w') as outfile:
+    outfile.write(json_obj)
