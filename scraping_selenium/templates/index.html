@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="tile">
+            <h2>BR</h2>
+            <div class="buttons">
+                <button onclick="buttonClicked('do_something')">Fonds</button>
+                <button>Marktlage</button>
+                <button>Themen</button>
+                <button>Wissen</button>
+            </div>
+        </div>
+        
+        <div class="tile">
+            <h2>UI</h2>
+            <div class="buttons">
+                <button>Button 1</button>
+                <button>Button 2</button>
+                <button>Button 3</button>
+                <button>Button 4</button>
+            </div>
+        </div>
+
+        <div class="tile">
+            <h2>A</h2>
+            <div class="buttons">
+                <button>Button 1</button>
+                <button>Button 2</button>
+                <button>Button 3</button>
+                <button>Button 4</button>
+            </div>
+        </div>
+
+        <div class="tile">
+            <h2>CB</h2>
+            <div class="buttons">
+                <button>Button 1</button>
+                <button>Button 2</button>
+                <button>Button 3</button>
+                <button>Button 4</button>
+            </div>
+        </div>
+        
+    </div>
+
+
+
+
+
+
+    <script>
+        function buttonClicked(action) {
+            fetch(`/do_something/${action}`)
+                .then(response => response.json())
+                .then(data => alert(data.message))
+                .catch(error => console.error('Error:', error));
+        }
+    </script>
+
+
+
+</body>
+</html>
