@@ -9,7 +9,7 @@ import matplotlib.pylab as plt
 
 import time
 import traceback
-from functions import blackrock_links
+from functions import blackrock_links, simplesort_links
 
 
 driver = webdriver.Firefox()
@@ -57,4 +57,36 @@ def simplesort_links(links : list):
     print('***************')
 
 
-simplesort_links(links)
+# simplesort_links(links)
+
+def close_driver(driver):
+    time.sleep(2)
+    driver.close()
+
+def next_link(link : str):
+    driver.get(link)
+    time.sleep(2) # wait for pop-ups
+
+    pop_up = driver.find_element(By.XPATH, "//a[@data-link-event='Accept t&c: individual']")
+    pop_up.click()
+    return driver
+
+def get_content(search):
+    content = []
+    divs = search.find_elements(By.XPATH, "//div[@class='description']")
+    print(len(divs))
+    for catch in divs:
+        print(catch)
+        print('in')
+        text = catch.find_element(By.XPATH, ".//*").text
+        print(text)
+
+
+
+
+search = next_link('https://www.blackrock.com/de/privatanleger/themen/multi-asset')
+get_content(search)
+    
+
+
+close_driver(driver=driver)

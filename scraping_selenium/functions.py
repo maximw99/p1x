@@ -49,9 +49,96 @@ def blackrock_links(driver):
         traceback.print_exc()
         pass
 
-    driver.quit()
+    # driver.quit()
     return br_links
 
+
+def h2_wrapper():
+    driver.get('https://www.blackrock.com/de/privatanleger/themen/multi-asset')
+    time.sleep(2) # wait for pop-ups
+
+    pop_up = driver.find_element(By.XPATH, "//button[text()='Nur erforderlich']")
+    pop_up.click()
+    time.sleep(2)
+
+
+    pop_up = driver.find_element(By.XPATH, "//a[@data-link-event='Accept t&c: individual']")
+    pop_up.click()
+
+
+    content = []
+    content_divs = driver.find_elements(By.XPATH, "//div[@class='content-block-data']")
+    describtion_divs = driver.find_elements(By.XPATH, "//div[@class='description']")
+    print(len(content_divs))
+
+    for catch in content_divs:
+        try:
+            header = catch.find_element(By.XPATH, ".//h3[@class='sub-heading']").text
+            print('header: ', header)
+        except:
+            pass
+        try:
+            text = catch.find_element(By.XPATH, ".//p").text
+            print('text: ', text) 
+        except:
+            pass
+    
+    print('------------------break-----------------')
+
+
+def describtion_wrapper(driver):
+    content = []
+    content_divs = driver.find_elements(By.XPATH, "//div[@class='content-block-data']")
+    describtion_divs = driver.find_elements(By.XPATH, "//div[@class='description']")
+    print(len(content_divs))
+
+    for catch in describtion_divs:
+        try:
+            print('----------------in-------------------')
+            text = catch.find_element(By.XPATH, ".//p").text
+            print(text)
+            content.append(text)
+        except Exception:
+            traceback.print_exc()
+            pass
+
+
+def simplesort_links(links : list):
+    fonds_links = []
+    markt_links = []
+    topic_links = []
+    product_links = []
+    wiki_links = []
+    left_links = []
+
+    for link in links:
+        if 'fonds-im-fokus' in link:
+            fonds_links.append(link)
+        elif 'markte' in link:
+            markt_links.append(link)
+        elif 'themen' in link:
+            topic_links.append(link)
+        elif 'produkt' in link:
+            product_links.append(link)
+        elif 'wissenswertes' in link:
+            wiki_links.append(link)
+        else:
+            left_links.append(link)
+
+    # for link in fonds_links:
+
+    print(fonds_links)
+    print('***************')
+    print(topic_links)
+    print('***************')
+    print(markt_links)
+    print('***************')
+    print(product_links)
+    print('***************')
+    print(wiki_links)
+    print('***************')
+    print(left_links)
+    print('***************')
 
 
 def cluster_topics(br_links : list):
