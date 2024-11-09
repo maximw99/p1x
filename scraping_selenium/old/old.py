@@ -63,6 +63,7 @@ def close_driver(driver):
     time.sleep(2)
     driver.close()
 
+
 def next_link(link : str):
     driver.get(link)
     time.sleep(2) # wait for pop-ups
@@ -84,7 +85,7 @@ def get_content(search):
 
 
 
-search = next_link('https://www.blackrock.com/de/privatanleger/themen/multi-asset')
+search = next_link('')
 get_content(search)
     
 

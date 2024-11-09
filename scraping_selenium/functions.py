@@ -40,7 +40,7 @@ def blackrock_links(driver):
         br_links = []
         other_links = []
         for link in links:
-            if 'www.blackrock.com' in link:
+            if '' in link:
                 br_links.append(link)
             else:
                 other_links.append(link)
@@ -54,7 +54,7 @@ def blackrock_links(driver):
 
 
 def h2_wrapper():
-    driver.get('https://www.blackrock.com/de/privatanleger/themen/multi-asset')
+    driver.get('')
     time.sleep(2) # wait for pop-ups
 
     pop_up = driver.find_element(By.XPATH, "//button[text()='Nur erforderlich']")
